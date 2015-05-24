@@ -1,5 +1,5 @@
 doctype html
-html lang="en"
+html lang="ja"
   head
     meta charset="utf-8"
     meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
@@ -29,27 +29,12 @@ html lang="en"
             span.icon-bar
           a.navbar-brand href="#"ToDo
           .navbar-collapse.collapse.navbar-responsive-collapse
-            ul.nav.navbar-nav
-              li= link_to "Link 1", "/path1"
-              li= link_to "Link 2", "/path2"
-              li= link_to "Link 3", "/path3"
 
     .container
       .row
         .col-lg-9
           = bootstrap_flash
           = yield
-        .col-lg-3
-          .well.sidebar-nav
-            h3 Sidebar
-            ul.nav.nav-list
-              li.nav-header Sidebar
-              - if current_user 
-                  li= link_to "Edit Profile", edit_user_path(current_user.id)
-                  li= link_to "Logout", :logout, method: :post
-              - else
-                  li= link_to "Register", new_user_path
-                  li= link_to "Login", :login
 
       footer
-        p &copy; Company 2015
+        p all your base are belong to us.

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  get 'static_pages/top'
+  root :to => 'static_pages#top'
+
   resources :users
-  root :to => 'users#index'
   resources :user_sessions
   resources :users
 
