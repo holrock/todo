@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 require 'rails_helper'
 
-Fg = FactoryGirl
+Fg ||= FactoryGirl
 
 RSpec.describe User, type: :model do
 
