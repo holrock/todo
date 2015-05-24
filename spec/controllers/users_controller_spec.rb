@@ -39,7 +39,7 @@ RSpec.describe UsersController, type: :controller do
 
       it "redirects to the created user" do
         post :create, user: Fg.attributes_for(:user)
-        expect(response).to redirect_to(User)
+        expect(response).to redirect_to(login_path)
       end
     end
 
