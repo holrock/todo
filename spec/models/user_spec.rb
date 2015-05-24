@@ -14,7 +14,7 @@ RSpec.describe User, type: :model do
 
   context "パスワードが３文字未満のときは" do
     it "無効であるべき" do
-      user = Fg.build(:user, password: "ab", password_confirmation: "ab")
+      user = Fg.build(:user, password: "12", password_confirmation: "12")
       expect(user).not_to be_valid
     end
   end
@@ -22,6 +22,30 @@ RSpec.describe User, type: :model do
   context "パスワードと確認パスワードが違うときは" do
     it "無効であるべき" do
       user = Fg.build(:user, password: "123", password_confirmation: "124")
+      expect(user).not_to be_valid
+    end
+  end
+
+  context "パラメーターが有効なときは" do
+    it "有効であるべき" do
+      user = Fg.build(:user)
+      expect(user).to be_valid
+    end
+  end
+
+  context "パラメーターが無効なとき" do
+    it "emailが無効なら無効であるべき" do
+      user = Fg.build(:user, email: nil)
+      expect(user).not_to be_valid
+    end
+
+    it "passswordが無効なら無効であるべき" do
+      user = Fg.build(:user, password: nil)
+      expect(user).not_to be_valid
+    end
+
+    it "passsword_confirmationが無効なら無効であるべき" do
+      user = Fg.build(:user, password_confirmation: nil)
       expect(user).not_to be_valid
     end
   end
