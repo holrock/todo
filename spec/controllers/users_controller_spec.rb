@@ -121,7 +121,7 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    context "no login" do
+    context "logined" do
       before :each do
         @user = Fg.create(:user)
         login_user @user
