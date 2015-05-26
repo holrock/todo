@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 require 'rails_helper'
 
-Fg ||= FactoryGirl
-
 RSpec.describe User, type: :model do
 
   context "パスワードが３文字以上のときは" do
