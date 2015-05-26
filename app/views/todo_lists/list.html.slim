@@ -1,28 +1,37 @@
-= form_for @new_todo, :html => {class: 'form-inline'} do |f|
-  .form-group
-    = f.label :text, 'new todo: '
-    = f.text_field :text, class: 'form-control'
-  = f.submit "add", class: "btn btn-default"
+.row
+  .col-lg-12
+    = form_for @new_todo, :html => {class: 'form-inline'} do |f|
+      .form-group
+        = f.label :text, 'new todo: '
+        = f.text_field :text, class: 'form-control'
+      = f.submit "add", class: "btn btn-default"
 
-br
+.row
+  .col-lg-8
+    h3 Todo
+    table.table
+      thead
+        tr
+          th todo
+          th status
+          th update
+          th
+          th
 
-table.table
-  thead
-    tr
-      th todo
-      th status
-      th update
-      th
-      th
+      tbody
+        - @todo_items.each do |todo|
+          tr
+            td = todo.text
+            - if todo.finished
+                td finished
+            - else
+                td ongoing
+            td = todo.updated_at
+            td = link_to 'Edit', edit_todo_item_path(todo)
+            td = link_to 'Destroy', todo, data: {:confirm => 'Are you sure?'}, :method => :delete
 
-  tbody
-    - @todo_items.each do |todo|
-      tr
-        td = todo.text
-        - if todo.finished
-            td finished
-        - else
-            td ongoing
-        td = todo.updated_at
-        td = link_to 'Edit', edit_todo_item_path(todo)
-        td = link_to 'Destroy', todo, data: {:confirm => 'Are you sure?'}, :method => :delete
+  .col-lg-4
+    h5 Tags
+    ul
+      - @tags.each do |tag|
+        li = tag.text
