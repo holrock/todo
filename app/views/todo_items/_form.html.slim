@@ -1,4 +1,4 @@
-= form_for @todo_item do |f|
+= form_for @todo_item, :html => {class: 'form-inline'} do |f|
   - if @todo_item.errors.any?
     #error_explanation
       h2 = "#{pluralize(@todo_item.errors.count, "error")} prohibited this todo_item from being saved:"
@@ -6,10 +6,13 @@
         - @todo_item.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :text
-    = f.text_field :text
-  .field
-    = f.label :finished
+  .form-group
+    = f.label :text, "todo"
+    = f.text_field :text, class: 'form-control'
+
+  .checkbox
     = f.check_box :finished
-  .actions = f.submit
+    = f.label :finished
+
+  .form-group
+    = f.submit "update", class: "btn btn-default"

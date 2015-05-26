@@ -26,4 +26,6 @@
     h5 Tags
     ul.list-group
       - @tags.each do |tag|
-        li.list-group-item = tag.text
+        li.list-group-item
+          =link_to tag.text, todo_path(tag: tag.text)
+    =link_to 'clear tag', todo_path(tag: nil)

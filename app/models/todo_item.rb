@@ -8,7 +8,11 @@ class TodoItem < ActiveRecord::Base
   after_save :manage_tag
 
   def self.search_by_tag(tag_text)
-    joins(:tags).where(tags: {text: tag_text.sub("#", "")})
+    unless tag_text.nil?
+      joins(:tags).where(tags: {text: tag_text.sub("#", "")})
+    else
+      all
+    end
   end
 
   private

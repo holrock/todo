@@ -16,6 +16,13 @@ RSpec.describe TodoListsController, type: :controller do
         expect(assigns(:todo_items)).to match([@user.todo_items.first])
       end
 
+      it "list todo with tag" do
+        @user.todo_items.create(Fg.attributes_for(:todo_item, text:"#tag1"))
+        @user.todo_items.create(Fg.attributes_for(:todo_item, text:"#tag2"))
+        get :list, {tag: "tag2"}
+        expect(assigns(:todo_items)).to match([@user.todo_items[1]])
+      end
+
       it "order by updated_at" do
         @user.todo_items.create(Fg.attributes_for(:todo_item, text:'1'))
         @user.todo_items.create(Fg.attributes_for(:todo_item, text:'2'))
@@ -26,8 +33,7 @@ RSpec.describe TodoListsController, type: :controller do
       end
 
       it "list tag" do
-        @user.todo_items.create(Fg.attributes_for(:todo_item))
-        @user.todo_items.first.tags = [Fg.create(:tag, text:"#tag")]
+        @user.todo_items.create(Fg.attributes_for(:todo_item, text:"#tag"))
         get :list
         expect(assigns(:tags).map(&:text)).to match(["tag"])
       end
