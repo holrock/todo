@@ -97,10 +97,10 @@ RSpec.describe TodoItemsController, type: :controller do
         expect(assigns(:todo_item)).to eq(todo_item)
       end
 
-      it "redirects to the todo_item" do
+      it "redirects to the todo_url" do
         todo_item = TodoItem.create! valid_attributes
         put :update, {:id => todo_item.to_param, :todo_item => valid_attributes}, valid_session
-        expect(response).to redirect_to(todo_item)
+        expect(response).to redirect_to(todo_url)
       end
     end
 
