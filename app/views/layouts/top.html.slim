@@ -19,18 +19,13 @@ html lang="ja"
     = javascript_include_tag "application"
 
   body
-    .navbar.navbar-default.navbar-static-top
-        .container
-          button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse"
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          a.navbar-brand href=root_url ToDo
-          .navbar-collapse.collapse.navbar-responsive-collapse
+    nav.navbar.navbar-default.navbar-static-top
+      .container
+        a.navbar-brand href=root_url ToDo
 
-    .container
-      .row
-        .col-lg-12
-          = bootstrap_flash
-      .row
+    header
+      .container
+        .row
+          .col-lg-12
+            = bootstrap_flash
         = yield
