@@ -11,6 +11,7 @@ table.table
     tr
       th todo
       th status
+      th update
       th
       th
 
@@ -22,5 +23,6 @@ table.table
             td finished
         - else
             td ongoing
+        td = todo.updated_at
         td = link_to 'Edit', edit_todo_item_path(todo)
         td = link_to 'Destroy', todo, data: {:confirm => 'Are you sure?'}, :method => :delete
