@@ -43,5 +43,15 @@ RSpec.describe TodoItem, type: :model do
       end
     end
 
+    context "search by tag" do
+      it "retrun taggin item" do
+        item = Fg.create(:todo_item, text:"#tag1")
+        Fg.create(:todo_item, text:"#tag2")
+        items = TodoItem.search_by_tag("tag1")
+        expect(items.to_a).to match([item])
+      end
+    end
   end
 end
+
+

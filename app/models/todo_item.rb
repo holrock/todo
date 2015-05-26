@@ -7,6 +7,10 @@ class TodoItem < ActiveRecord::Base
 
   after_save :manage_tag
 
+  def self.search_by_tag(tag_text)
+    joins(:tags).where(tags: {text: tag_text.sub("#", "")})
+  end
+
   private
 
   def manage_tag
