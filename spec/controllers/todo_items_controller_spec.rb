@@ -3,7 +3,7 @@ require 'rails_helper'
 
 RSpec.describe TodoItemsController, type: :controller do
 
-  let(:valid_attributes) { {todo_list_id: @todo_list.id, text:"text"} }
+  let(:valid_attributes) { {text:"text"} }
 
   let(:invalid_attributes) { {text:nil} }
 
@@ -12,7 +12,6 @@ RSpec.describe TodoItemsController, type: :controller do
   before :each do
     @user = Fg.create(:user)
     login_user(@user)
-    @todo_list = Fg.create(:todo_list, user_id: @user_id)
   end
 
   describe "GET #index" do

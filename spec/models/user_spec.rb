@@ -58,12 +58,5 @@ RSpec.describe User, type: :model do
         expect(user.errors[:email]).to include("has already been taken")
       end
     end
-
-    describe "TodoList" do
-      it "listは空" do
-        user = Fg.build(:user)
-        expect(user .todo_lists).to be_empty
-      end
-    end
   end
 end

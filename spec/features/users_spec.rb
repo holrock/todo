@@ -16,7 +16,7 @@ feature do
     fill_in "email", with: "hoge@example.com"
     fill_in "password", with: "pass"
     click_button "Login"
-    expect(current_path).to eq todo_lists_path
+    expect(current_path).to eq todo_path
   end
 
   scenario "login" do
@@ -27,7 +27,7 @@ feature do
     fill_in "email", with: "hoge@example.com"
     fill_in "password", with: "pass"
     click_button "Login"
-    expect(current_path).to eq todo_lists_path
+    expect(current_path).to eq todo_path
   end
 
 end

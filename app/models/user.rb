@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
-  has_many :todo_lists, dependent: :destroy, inverse_of: :user
 
   validates :email, presence: true
   validates :password, length: { minimum: 3 }
