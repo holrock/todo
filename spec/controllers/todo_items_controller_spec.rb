@@ -3,15 +3,17 @@ require 'rails_helper'
 
 RSpec.describe TodoItemsController, type: :controller do
 
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) { {todo_list_id: @todo_list.id, text:"text"} }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) { {text:nil} }
 
   let(:valid_session) { {} }
+
+  before :each do
+    @user = Fg.create(:user)
+    login_user(@user)
+    @todo_list = Fg.create(:todo_list, user_id: @user_id)
+  end
 
   describe "GET #index" do
     it "assigns all todo_items as @todo_items" do
@@ -80,14 +82,14 @@ RSpec.describe TodoItemsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {text:"new_text"}
       }
 
       it "updates the requested todo_item" do
         todo_item = TodoItem.create! valid_attributes
         put :update, {:id => todo_item.to_param, :todo_item => new_attributes}, valid_session
         todo_item.reload
-        skip("Add assertions for updated state")
+        expect(todo_item.text).to eq("new_text")
       end
 
       it "assigns the requested todo_item as @todo_item" do
