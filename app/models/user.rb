@@ -8,4 +8,10 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   validates :email, uniqueness: true
+
+  def uniq_tag
+    Tag.joins(:todo_items)
+      .where(todo_items:{user_id: self.id}).uniq
+      .order(updated_at: :desc)
+  end
 end

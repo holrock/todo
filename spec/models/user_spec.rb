@@ -59,4 +59,14 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe "Tag" do
+    it "return uniq tag" do
+      user = Fg.create(:user)
+      Fg.create(:todo_item, user: user, text: "#tag")
+      Fg.create(:todo_item, user: user, text: "#tag")
+      tags = user.uniq_tag.to_a
+      expect(tags).to match([Tag.first])
+    end
+  end
 end
