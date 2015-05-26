@@ -14,13 +14,15 @@
 ActiveRecord::Schema.define(version: 20150526044437) do
 
   create_table "todo_items", force: :cascade do |t|
+    t.integer  "todo_list_id"
     t.string   "text"
     t.boolean  "finished"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "todo_lists", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "title"
     t.integer  "list_order"
     t.datetime "created_at", null: false
