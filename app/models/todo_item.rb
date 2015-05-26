@@ -1,3 +1,4 @@
 class TodoItem < ActiveRecord::Base
-    validates :text, presence: true
+  belongs_to :user, :inverse_of => :todo_items
+  validates :text, presence: true
 end
