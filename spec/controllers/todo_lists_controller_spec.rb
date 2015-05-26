@@ -25,6 +25,13 @@ RSpec.describe TodoListsController, type: :controller do
         expect(assigns(:todo_items)).to match(desc_sorted)
       end
 
+      it "list tag" do
+        @user.todo_items.create(Fg.attributes_for(:todo_item))
+        @user.todo_items.first.tags = [Fg.create(:tag, text:"#tag")]
+        get :list
+        expect(assigns(:tags).map(&:text)).to match(["tag"])
+      end
+
       it "render list" do
         get :list
         expect(response).to render_template("list")
