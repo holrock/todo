@@ -11,7 +11,7 @@ RSpec.describe TodoListsController, type: :controller do
   before :each do
     @user = Fg.create(:user)
     login_user(@user)
-    @todo_list = Fg.create(:todo_list, user_id: @user.id)
+    @todo_list = Fg.create(:todo_list, user:@user)
   end
 
   describe "GET #index" do
@@ -54,6 +54,7 @@ RSpec.describe TodoListsController, type: :controller do
         post :create, {:todo_list => valid_attributes}, valid_session
         expect(assigns(:todo_list)).to be_a(TodoList)
         expect(assigns(:todo_list)).to be_persisted
+        expect(assigns(:todo_list).user).to eq(@user)
       end
 
       it "redirects to the created todo_list" do
