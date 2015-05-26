@@ -3,6 +3,7 @@ class TodoListsController < ApplicationController
 
   def list
     @todo_items = current_user.todo_items
+    @new_todo = TodoItem.new
   end
 
 end

@@ -59,9 +59,9 @@ RSpec.describe TodoItemsController, type: :controller do
         expect(assigns(:todo_item)).to be_persisted
       end
 
-      it "redirects to the created todo_item" do
+      it "redirects to the todo list" do
         post :create, {:todo_item => valid_attributes}, valid_session
-        expect(response).to redirect_to(TodoItem.last)
+        expect(response).to redirect_to(todo_path)
       end
     end
 
@@ -71,9 +71,9 @@ RSpec.describe TodoItemsController, type: :controller do
         expect(assigns(:todo_item)).to be_a_new(TodoItem)
       end
 
-      it "re-renders the 'new' template" do
+      it "redirect to todo_url" do
         post :create, {:todo_item => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
+        expect(response).to redirect_to(todo_url)
       end
     end
   end
@@ -127,10 +127,10 @@ RSpec.describe TodoItemsController, type: :controller do
       }.to change(TodoItem, :count).by(-1)
     end
 
-    it "redirects to the todo_items list" do
+    it "redirects to the todo list" do
       todo_item = TodoItem.create! valid_attributes
       delete :destroy, {:id => todo_item.to_param}, valid_session
-      expect(response).to redirect_to(todo_items_url)
+      expect(response).to redirect_to(todo_path)
     end
   end
 

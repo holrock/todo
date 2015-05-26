@@ -24,14 +24,14 @@ class TodoItemsController < ApplicationController
   # POST /todo_items
   # POST /todo_items.json
   def create
-    @todo_item = TodoItem.new(todo_item_params)
+    @todo_item = current_user.todo_items.create(todo_item_params)
 
     respond_to do |format|
       if @todo_item.save
-        format.html { redirect_to @todo_item, notice: 'Todo item was successfully created.' }
+        format.html { redirect_to todo_path, notice: 'Todo item was successfully created.' }
         format.json { render :show, status: :created, location: @todo_item }
       else
-        format.html { render :new }
+        format.html { redirect_to todo_path, alert:@todo_item.errors.full_messages }
         format.json { render json: @todo_item.errors, status: :unprocessable_entity }
       end
     end
@@ -56,7 +56,7 @@ class TodoItemsController < ApplicationController
   def destroy
     @todo_item.destroy
     respond_to do |format|
-      format.html { redirect_to todo_items_url, notice: 'Todo item was successfully destroyed.' }
+      format.html { redirect_to todo_path, notice: 'Todo item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class TodoItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def todo_item_params
-      params.require(:todo_item).permit(:todo_list_id, :text, :finished)
+      params.require(:todo_item).permit(:text, :finished)
     end
 end
