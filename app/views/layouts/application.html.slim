@@ -20,13 +20,19 @@ html lang="ja"
 
   body
     .navbar.navbar-default.navbar-static-top
-        .container
+      .container
+        .navbar-header
           button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse"
             span.icon-bar
             span.icon-bar
             span.icon-bar
           a.navbar-brand href=root_url ToDo
+
+        .collapse.navbar-collapse
           .navbar-collapse.collapse.navbar-responsive-collapse
+            - if current_user
+              = form_tag(logout_path, method: :post, class:"navbar-form navbar-right") do
+                button.btn.btn-default.navbar-btn Logout
 
     .container
       .row
