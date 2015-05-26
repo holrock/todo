@@ -1,5 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Tag, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  context "valid parameter" do
+    it "valid" do
+      expect(Fg.build(:tag)).to be_valid
+    end
+  end
+
+  context "invalid parameter" do
+    it "invalid" do
+      expect(Fg.build(:tag, text:nil)).not_to be_valid
+    end
+  end
 end
