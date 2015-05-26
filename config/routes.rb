@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :todo_items
+  resources :todo_items, only: [:create, :edit, :update, :destroy]
 
   get 'static_pages/top'
   root :to => 'static_pages#top'
