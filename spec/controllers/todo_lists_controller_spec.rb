@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'rails_helper'
 
 RSpec.describe TodoListsController, type: :controller do
@@ -18,6 +19,14 @@ RSpec.describe TodoListsController, type: :controller do
     it "assigns all todo_lists as @todo_lists" do
       get :index, {}, valid_session
       expect(assigns(:todo_lists)).to eq([@todo_list])
+    end
+
+    it "list_order順に並ぶ" do
+      list = [Fg.create(:todo_list, user:@user, list_order:0)]
+      list << @todo_list
+      list << Fg.create(:todo_list, user:@user, list_order:999)
+      get :index, {}, valid_session
+      expect(assigns(:todo_lists)).to match_array(list)
     end
   end
 
