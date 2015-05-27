@@ -8,4 +8,5 @@ test program
 * sorcery-0.9.1
 
 bin/rake db:create && bin/rake db:migrate
+
 bin/rails s
