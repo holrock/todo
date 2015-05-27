@@ -19,7 +19,7 @@ feature do
     expect(current_path).to eq todo_path
   end
 
-  scenario "login" do
+  scenario "login/logout" do
     Fg.create(:user, email:"hoge@example.com", password:"pass")
 
     visit root_path
@@ -28,6 +28,7 @@ feature do
     fill_in "password", with: "pass"
     click_button "Login"
     expect(current_path).to eq todo_path
+    click_button "Logout"
+    expect(current_path).to eq root_path
   end
-
 end
