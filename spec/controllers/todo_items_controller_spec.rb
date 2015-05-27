@@ -14,29 +14,6 @@ RSpec.describe TodoItemsController, type: :controller do
     login_user(@user)
   end
 
-  describe "GET #index" do
-    it "assigns all todo_items as @todo_items" do
-      todo_item = TodoItem.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:todo_items)).to eq([todo_item])
-    end
-  end
-
-  describe "GET #show" do
-    it "assigns the requested todo_item as @todo_item" do
-      todo_item = TodoItem.create! valid_attributes
-      get :show, {:id => todo_item.to_param}, valid_session
-      expect(assigns(:todo_item)).to eq(todo_item)
-    end
-  end
-
-  describe "GET #new" do
-    it "assigns a new todo_item as @todo_item" do
-      get :new, {}, valid_session
-      expect(assigns(:todo_item)).to be_a_new(TodoItem)
-    end
-  end
-
   describe "GET #edit" do
     it "assigns the requested todo_item as @todo_item" do
       todo_item = TodoItem.create! valid_attributes
